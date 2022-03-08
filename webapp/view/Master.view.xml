@@ -1,0 +1,162 @@
+<mvc:View
+    controllerName="iitp.zacmapr.controller.Master"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:chart="sap.suite.ui.commons"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+>
+    <f:DynamicPage id="dynamicPageId">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="월별 자재단가 변동"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- DynamicPage Header-->  
+        <f:header>  
+            <f:DynamicPageHeader pinnable="true">
+
+                    <Panel>
+                    <Label text="조회조건" />
+                    <FlexBox
+                            alignItems="Start"
+                            justifyContent="SpaceBetween">
+                        <items>
+                            <Panel
+                                    backgroundDesign="Transparent"
+                                    class="sapUiNoContentPadding">
+                                <content>
+                                    <layout:HorizontalLayout
+                                            allowWrapping="true">
+                                        <layout:VerticalLayout
+                                                class="sapUiMediumMarginEnd">
+                                            <Label text="Filter Material" labelFor="fmatnr" />
+                                            <Input
+                                                id="fmatnr"
+                                                placeholder="Filter Material"
+                                                value="{main>/filter/matnr}">
+                                            </Input>
+                                        </layout:VerticalLayout>
+                                        <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                                        <Label text="Filter Vendor" labelFor="fvennr" />
+                                            <Input
+                                                id="fvennr"
+                                                placeholder="Filter Vendor"
+                                                value="{main>/filter/vennr}">
+                                            </Input>
+                                        </layout:VerticalLayout>                                     
+                                    </layout:HorizontalLayout>
+                                </content>
+                            </Panel>
+                            <Button
+                            text="Search"
+                            type="Emphasized"
+                            press="onSearch"/>
+                        </items>
+                    </FlexBox>				
+                            
+                    </Panel>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+        <VBox>
+            <Panel expandable="false">
+                <Table id="idTable" items="{main>/it_data}" mode="MultiSelect">
+                    <columns>
+                        <Column>
+                            <header>
+                                <Text text="Period"></Text>
+                            </header>
+                        </Column>
+                        <Column>
+                            <header>
+                                <Text text="Material Number"></Text>
+                            </header>
+                        </Column>
+                        <Column>
+                            <header>
+                                <Text text="Vendor Number"></Text>
+                            </header>
+                        </Column>           
+                        <Column>
+                            <header>
+                                <Text text="Standard Quantity"></Text>
+                            </header>
+                        </Column>
+                        <Column>
+                            <header>
+                                <Text text="Local Currency"></Text>
+                            </header>
+                        </Column>    
+                    </columns>
+                    <items>
+                        <ColumnListItem press="onSelect" vAlign="Middle" type="Navigation">
+                            <cells>
+                                <Input value="{main>spmon}" editable ="{main>/editMode}"></Input>
+                                <Input value="{main>matnr}" editable ="{main>/editMode}"></Input>
+                                <Input value="{main>vennr}" editable ="{main>/editMode}"></Input>
+                                <ObjectNumber
+                                        number="{main>menge}"
+                                        unit="{main>meins}" 
+                                        active ="{main>/editMode}"/>
+                                <ObjectNumber
+                                        number="{
+                                            parts:[{path:'main>matam'},{path:'main>mtkey'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: false}
+                                        }"
+                                        unit="{main>mtkey}" 
+                                        active ="{main>/editMode}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </Panel>
+
+            <Panel>
+
+               <!-- <chart:ChartContainer id="chartContainer1" showFullScreen="true" showZoom="true" title="char1">
+                    <chart:ChartContainerContent>
+                        <chart:content>
+                            <viz:VizFrame id="vizFrame1" uiConfig="{applicationSet:'fiori'}" height='20rem' width="100%"
+                                vizType='line'>
+                                <viz:dataset>
+                                    <viz.data:FlattenedDataset data="{main>/it_data}">
+                                        <viz.data:dimensions>
+                                            <viz.data:DimensionDefinition name="fldate"
+                                                value="{main>fldate}" />
+                                        </viz.data:dimensions>
+                                        <viz.data:measures>
+                                            <viz.data:MeasureDefinition name="price"
+                                                value="{main>price}" />
+                                        </viz.data:measures>
+                                    </viz.data:FlattenedDataset>
+                                </viz:dataset>
+                                <viz:feeds>
+                                    <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="price" />
+                                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="fldate" />
+                                </viz:feeds>
+                            </viz:VizFrame>
+                        </chart:content>
+                    </chart:ChartContainerContent>
+                </chart:ChartContainer> -->
+                
+            </Panel>
+            </VBox>
+        </f:content>
+        <f:footer>
+
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>
