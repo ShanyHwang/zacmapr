@@ -20,4 +20,4 @@ builder:
           name: ZACMAPR
           description: "[BEER] 월별 자재단가 조회"
           package: ZP_BEER
-          transport: KYSK903452
+          transport: KYSK903616

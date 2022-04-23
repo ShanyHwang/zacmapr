@@ -69,7 +69,6 @@ sap.ui.define([
 				let oModel = this.getView().getModel("main");
 				let oEdit = oModel.setProperty('/editMode', false);
 				let oFilter = oModel.getProperty('/filter');
-				oFilter.matnr = '';
 				let mFilter = [];
 				// let oTable = this.byId("idTable");
                 // let oBinding = oTable.getBinding("items");

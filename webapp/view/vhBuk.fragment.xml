@@ -1,0 +1,18 @@
+<core:FragmentDefinition 
+ xmlns="sap.m" 
+ xmlns:core="sap.ui.core">
+ <SelectDialog 
+    title="회사코드" 
+    class="sapUiPopupWithPadding" 
+    items="{/ES_BUKRSSet}" 
+    search="onValueHelpSearch"
+    confirm="onValueHelpClose" 
+    cancel="onValueHelpClose">
+ 
+    <StandardListItem 
+        id="idStdListItem" 
+        iconDensityAware="false" 
+        iconInset="false" title="{bukrs}" 
+        description="{butxt}"></StandardListItem>
+ </SelectDialog> 
+ </core:FragmentDefinition>

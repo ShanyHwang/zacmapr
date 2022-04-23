@@ -31,12 +31,8 @@ sap.ui.define([
                     create : {
                         spmon : '',
                         matnr : ''		
-                    },
-                    filter : {
-                        spmon : '',
-                        matnr : ''
-                    },
-                    filter2 : {
+                    }
+                    ,filter : {
                         spmon : '',
                         matnr : ''
                     },
